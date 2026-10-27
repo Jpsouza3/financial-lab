@@ -1,0 +1,283 @@
+{
+  "format": 1,
+  "restore": {
+    "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Api/financial-lab-account.Api.csproj": {}
+  },
+  "projects": {
+    "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Api/financial-lab-account.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Api/financial-lab-account.Api.csproj",
+        "projectName": "financial-lab-account.Api",
+        "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Api/financial-lab-account.Api.csproj",
+        "packagesPath": "/home/joao/.nuget/packages/",
+        "outputPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/joao/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj": {
+                "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj"
+              },
+              "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj": {
+                "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj"
+              },
+              "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/financial-lab-account.Data.csproj": {
+                "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/financial-lab-account.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.5.11, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/joao/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj",
+        "projectName": "financial-lab-account.Business",
+        "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj",
+        "packagesPath": "/home/joao/.nuget/packages/",
+        "outputPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/joao/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/joao/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj",
+        "projectName": "financial-lab-account.Contracts",
+        "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj",
+        "packagesPath": "/home/joao/.nuget/packages/",
+        "outputPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/joao/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/joao/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/financial-lab-account.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/financial-lab-account.Data.csproj",
+        "projectName": "financial-lab-account.Data",
+        "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/financial-lab-account.Data.csproj",
+        "packagesPath": "/home/joao/.nuget/packages/",
+        "outputPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/joao/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj": {
+                "projectPath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/joao/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

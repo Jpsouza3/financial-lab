@@ -1,0 +1,11 @@
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/bin/Debug/net9.0/financial-lab-account.Business.deps.json
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/bin/Debug/net9.0/financial-lab-account.Business.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/bin/Debug/net9.0/financial-lab-account.Business.pdb
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.AssemblyInfoInputs.cache
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.AssemblyInfo.cs
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.csproj.CoreCompileInputs.cache
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/refint/financial-lab-account.Business.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/financial-lab-account.Business.pdb
+/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/obj/Debug/net9.0/ref/financial-lab-account.Business.dll

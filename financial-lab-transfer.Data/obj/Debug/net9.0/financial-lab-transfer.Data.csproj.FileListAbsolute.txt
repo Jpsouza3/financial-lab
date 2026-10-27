@@ -1,0 +1,15 @@
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/bin/Debug/net9.0/financial-lab-transfer.Data.deps.json
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/bin/Debug/net9.0/financial-lab-transfer.Data.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/bin/Debug/net9.0/financial-lab-transfer.Data.pdb
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/bin/Debug/net9.0/financial-lab-transfer.Business.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/bin/Debug/net9.0/financial-lab-transfer.Business.pdb
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.csproj.AssemblyReference.cache
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.AssemblyInfoInputs.cache
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.AssemblyInfo.cs
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.csproj.CoreCompileInputs.cache
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financia.3AE3A2FE.Up2Date
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/refint/financial-lab-transfer.Data.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.pdb
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/ref/financial-lab-transfer.Data.dll

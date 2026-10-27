@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "financial-lab-account.Business/1.0.0": {
+        "runtime": {
+          "financial-lab-account.Business.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "financial-lab-account.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
