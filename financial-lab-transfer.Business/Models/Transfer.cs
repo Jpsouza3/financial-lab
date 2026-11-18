@@ -40,6 +40,10 @@ public class Transfer : Entity
             throw new DomainException("O valor deve ter no máximo 2 casas decimais.");
         if (request.Description?.Length > DescriptionMaxLength)
             throw new DomainException($"A descrição deve ter no máximo {DescriptionMaxLength} caracteres.");
+        if (request.SourceAccountId == Guid.Empty)
+            throw new DomainException("A conta de origem é obrigatória.");
+        if (request.DestinationAccountId == Guid.Empty)
+            throw new DomainException("A conta de destino é obrigatória.");
 
         var now = UtcClock.Now;
         return new Transfer

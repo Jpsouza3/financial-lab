@@ -5,6 +5,7 @@
 | Versão | Data | Descrição |
 |---|---|---|
 | 1.0.0 | 2026-11-18 | Transferência entre contas com análise antifraude, débito, crédito e estorno |
+| 1.1.0 | 2026-11-18 | Origem ou destino ausente passa a ser recusado na criação (R5, R6) |
 
 ## Contexto
 
@@ -130,11 +131,13 @@ Perna: `{ accountId, endToEndId, entryId, occurredAt }`. `entryId` é o id do la
 | R2 | `amount` ausente, zero ou negativo | 400 | `O valor deve ser maior que zero.` |
 | R3 | `amount` com mais de 2 casas decimais | 400 | `O valor deve ter no máximo 2 casas decimais.` |
 | R4 | `description` com mais de 140 caracteres | 400 | `A descrição deve ter no máximo 140 caracteres.` |
+| R5 | `sourceAccountId` ausente ou `00000000-0000-0000-0000-000000000000` | 400 | `A conta de origem é obrigatória.` |
+| R6 | `destinationAccountId` ausente ou `00000000-0000-0000-0000-000000000000` | 400 | `A conta de destino é obrigatória.` |
 
 - `title` é sempre `Requisição inválida.`. As regras são avaliadas na ordem da tabela, e só a primeira que falhar é devolvida.
 - Corpo ausente ou JSON malformado responde `400` sem `detail` fixo.
 - Em caso de `400`, nenhuma transferência é gravada.
-- A Transfer API não verifica se as contas existem: conta inexistente só aparece como recusa no débito ou no crédito. Um único id ausente vira `00000000-0000-0000-0000-000000000000` e cai nessas recusas.
+- A Transfer API não verifica se as contas existem: conta inexistente só aparece como recusa no débito ou no crédito. Id ausente é recusado na criação (R5, R6), porque o antifraude não aceita contas vazias.
 - Não há idempotência: duas requisições iguais criam duas transferências.
 
 ### Processamento
