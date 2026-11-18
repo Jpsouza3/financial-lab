@@ -49,7 +49,7 @@ public class Transfer : Entity
             Amount = request.Amount,
             Description = request.Description,
             EndToEndId = EndToEndIds.NewPayment(),
-            Status = TransferStatus.Debiting,
+            Status = TransferStatus.Screening,
             SimulationId = request.SimulationId,
             CreatedAt = now,
             UpdatedAt = now
@@ -65,6 +65,10 @@ public class Transfer : Entity
 
         return endToEndId == RefundEndToEndId && accountId == SourceAccountId ? TransferLeg.Refund : null;
     }
+
+    public bool ApproveScreening() => Move(TransferStatus.Screening, TransferStatus.Debiting);
+
+    public bool RejectScreening(string reason) => Move(TransferStatus.Screening, TransferStatus.FraudRejected, reason);
 
     public bool ConfirmDebit(Guid entryId, DateTime occurredAt)
     {

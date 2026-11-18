@@ -37,6 +37,15 @@ public class TransferRepository(TransferDbContext context) : ITransferRepository
             .Select(g => new { Status = g.Key, Count = g.Count() })
             .ToDictionaryAsync(g => g.Status, g => g.Count, ct);
 
+    public async Task<IReadOnlyList<Transfer>> ListByStatusCreatedBeforeAsync(TransferStatus status,
+        DateTime createdBefore, int take, CancellationToken ct)
+        => await context.Transfers
+            .AsNoTracking()
+            .Where(t => t.Status == status && t.CreatedAt < createdBefore)
+            .OrderBy(t => t.CreatedAt)
+            .Take(take)
+            .ToListAsync(ct);
+
     public void Add(Transfer transfer) => context.Transfers.Add(transfer);
 
     public async Task SaveChangesAsync(CancellationToken ct)

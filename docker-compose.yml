@@ -1,5 +1,15 @@
 name: financial-lab-account
 
+x-dotnet-env: &dotnet-env
+  ASPNETCORE_ENVIRONMENT: Development
+  RabbitMq__Host: rabbitmq
+  RabbitMq__Port: "5672"
+  RabbitMq__VirtualHost: /
+  RabbitMq__Username: guest
+  RabbitMq__Password: guest
+
+x-webhook-secret: &webhook-secret financial-lab-webhook-secret
+
 services:
   postgres:
     image: postgres:16-alpine
@@ -17,6 +27,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -35,6 +46,74 @@ services:
       interval: 10s
       timeout: 10s
       retries: 10
+    restart: unless-stopped
+
+  migrations:
+    build:
+      context: .
+      target: migrations
+    image: financial-lab/migrations
+    environment:
+      ACCOUNT_DB: Host=postgres;Port=5432;Database=financial_lab_account;Username=postgres;Password=postgres
+      TRANSFER_DB: Host=postgres;Port=5432;Database=financial_lab_transfer;Username=postgres;Password=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  account-api:
+    build:
+      context: .
+      target: account-api
+    image: financial-lab/account-api
+    container_name: financial-lab-account-api
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__AccountDb: Host=postgres;Port=5432;Database=financial_lab_account;Username=postgres;Password=postgres
+    ports:
+      - "5157:8080"
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+  transfer-api:
+    build:
+      context: .
+      target: transfer-api
+    image: financial-lab/transfer-api
+    container_name: financial-lab-transfer-api
+    environment:
+      <<: *dotnet-env
+      ConnectionStrings__TransferDb: Host=postgres;Port=5432;Database=financial_lab_transfer;Username=postgres;Password=postgres
+      Antifraud__BaseUrl: http://antifraud-api:8080
+      Antifraud__CallbackUrl: http://transfer-api:8080/webhooks/antifraud
+      Antifraud__WebhookSecret: *webhook-secret
+    ports:
+      - "5257:8080"
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+      rabbitmq:
+        condition: service_healthy
+      antifraud-api:
+        condition: service_started
+    restart: unless-stopped
+
+  antifraud-api:
+    build:
+      context: .
+      target: antifraud-api
+    image: financial-lab/antifraud-api
+    container_name: financial-lab-antifraud-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Antifraud__WebhookSecret: *webhook-secret
+    ports:
+      - "5357:8080"
+    restart: unless-stopped
 
 volumes:
   postgres-data:

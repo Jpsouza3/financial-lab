@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GuA5EAw58PM=",
+  "dgSpecHash": "MqEbapLTWvw=",
   "success": true,
-  "projectFilePath": "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Business/financial-lab-account.Business.csproj",
+  "projectFilePath": "/src/financial-lab-account.Business/financial-lab-account.Business.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

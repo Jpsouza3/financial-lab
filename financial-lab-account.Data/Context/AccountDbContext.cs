@@ -8,6 +8,7 @@ public class AccountDbContext(DbContextOptions<AccountDbContext> options) : DbCo
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<LedgerEntry> LedgerEntries => Set<LedgerEntry>();
     public DbSet<ProcessedCommand> ProcessedCommands => Set<ProcessedCommand>();
+    public DbSet<BalanceHold> BalanceHolds => Set<BalanceHold>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

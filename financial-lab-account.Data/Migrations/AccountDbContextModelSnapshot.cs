@@ -55,10 +55,20 @@ namespace financial_lab_account.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
+                    b.Property<DateTime>("OpenedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime?>("StatusChangedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("StatusReason")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<long>("Version")
                         .IsConcurrencyToken()
@@ -66,12 +76,60 @@ namespace financial_lab_account.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Document");
+                    b.HasIndex("Document")
+                        .IsUnique()
+                        .HasFilter("\"Status\" <> 'Closed'");
 
                     b.HasIndex("Branch", "Number")
                         .IsUnique();
 
                     b.ToTable("accounts", (string)null);
+                });
+
+            modelBuilder.Entity("financial_lab_account.Business.Models.BalanceHold", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("numeric(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
+
+                    b.Property<DateTime?>("ReleasedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId", "Reference")
+                        .IsUnique();
+
+                    b.HasIndex("Status", "ExpiresAt");
+
+                    b.ToTable("balance_holds", (string)null);
                 });
 
             modelBuilder.Entity("financial_lab_account.Business.Models.LedgerEntry", b =>
@@ -163,6 +221,15 @@ namespace financial_lab_account.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("processed_commands", (string)null);
+                });
+
+            modelBuilder.Entity("financial_lab_account.Business.Models.BalanceHold", b =>
+                {
+                    b.HasOne("financial_lab_account.Business.Models.Account", null)
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("financial_lab_account.Business.Models.LedgerEntry", b =>

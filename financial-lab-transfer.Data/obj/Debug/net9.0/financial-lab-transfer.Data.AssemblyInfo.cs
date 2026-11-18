@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("financial-lab-transfer.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+985384b86777e603c79bf25d1807909de04014d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("financial-lab-transfer.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("financial-lab-transfer.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

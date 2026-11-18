@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "financial-lab-transfer.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "financial-lab-transfer.Api", "financial-lab-transfer.Api\financial-lab-transfer.Api.csproj", "{8068D72D-30DE-4036-B92F-9C4974335CCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "financial-lab-antifraud.Api", "financial-lab-antifraud.Api\financial-lab-antifraud.Api.csproj", "{02242797-2103-4727-BBE1-1E83F4A1EBB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,18 @@ Global
 		{8068D72D-30DE-4036-B92F-9C4974335CCA}.Release|x64.Build.0 = Release|Any CPU
 		{8068D72D-30DE-4036-B92F-9C4974335CCA}.Release|x86.ActiveCfg = Release|Any CPU
 		{8068D72D-30DE-4036-B92F-9C4974335CCA}.Release|x86.Build.0 = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|x64.Build.0 = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|x64.ActiveCfg = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|x64.Build.0 = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{02242797-2103-4727-BBE1-1E83F4A1EBB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

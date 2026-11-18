@@ -9,6 +9,8 @@ public interface ITransferRepository
     Task<Transfer?> GetByEndToEndIdAsync(string endToEndId, CancellationToken ct);
     Task<IReadOnlyList<Transfer>> ListAsync(Guid? simulationId, TransferStatus? status, int take, CancellationToken ct);
     Task<IReadOnlyDictionary<TransferStatus, int>> CountByStatusAsync(Guid simulationId, CancellationToken ct);
+    Task<IReadOnlyList<Transfer>> ListByStatusCreatedBeforeAsync(TransferStatus status, DateTime createdBefore,
+        int take, CancellationToken ct);
     void Add(Transfer transfer);
 
     Task SaveChangesAsync(CancellationToken ct);

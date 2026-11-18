@@ -9,7 +9,7 @@ namespace financial_lab_transfer.Api.Endpoints;
 public static class SimulationEndpoints
 {
     private static readonly TransferStatus[] PendingStatuses =
-        [TransferStatus.Debiting, TransferStatus.Crediting, TransferStatus.Refunding];
+        [TransferStatus.Screening, TransferStatus.Debiting, TransferStatus.Crediting, TransferStatus.Refunding];
 
     public static void MapSimulationEndpoints(this IEndpointRouteBuilder app)
     {

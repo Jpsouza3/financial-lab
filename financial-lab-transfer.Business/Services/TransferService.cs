@@ -1,10 +1,15 @@
+using financial_lab_transfer.Business.Exceptions;
 using financial_lab_transfer.Business.Interfaces;
 using financial_lab_transfer.Business.Models;
 
 namespace financial_lab_transfer.Business.Services;
 
-public class TransferService(ITransferRepository repository, IAccountGateway accounts) : ITransferService
+public class TransferService(ITransferRepository repository, IAccountGateway accounts, IAntifraudGateway antifraud)
+    : ITransferService
 {
+    public const string RejectedByAntifraudReason = "Recusada pelo antifraude.";
+    public const string ScreeningTimeoutReason = "O antifraude não respondeu a tempo.";
+
     public async Task<IReadOnlyList<Transfer>> CreateAsync(IReadOnlyList<TransferRequest> requests,
         CancellationToken ct)
     {
@@ -12,12 +17,71 @@ public class TransferService(ITransferRepository repository, IAccountGateway acc
         foreach (var transfer in transfers)
         {
             repository.Add(transfer);
-            await accounts.RequestDebitAsync(transfer.SourceAccountId, transfer.Amount, transfer.EndToEndId,
-                transfer.Description, ct);
+            await antifraud.RequestAnalysisAsync(transfer, ct);
         }
 
         await repository.SaveChangesAsync(ct);
         return transfers;
+    }
+
+    public async Task<Transfer?> HandleScreeningDecisionAsync(string endToEndId, bool approved, string? reason,
+        CancellationToken ct)
+    {
+        var transfer = await repository.GetByEndToEndIdAsync(endToEndId, ct);
+        if (transfer is null || transfer.EndToEndId != endToEndId)
+            return null;
+
+        if (approved)
+        {
+            if (transfer.ApproveScreening())
+                await accounts.RequestDebitAsync(transfer.SourceAccountId, transfer.Amount, transfer.EndToEndId,
+                    transfer.Description, ct);
+        }
+        else
+        {
+            transfer.RejectScreening(string.IsNullOrWhiteSpace(reason) ? RejectedByAntifraudReason : reason);
+        }
+
+        await repository.SaveChangesAsync(ct);
+        return transfer;
+    }
+
+    public async Task<int> ReconcileScreeningAsync(TimeSpan staleAfter, TimeSpan timeout, int take,
+        CancellationToken ct)
+    {
+        var now = DateTime.UtcNow;
+        var stale = await repository.ListByStatusCreatedBeforeAsync(TransferStatus.Screening, now - staleAfter, take,
+            ct);
+        var reconciled = 0;
+
+        foreach (var transfer in stale)
+        {
+            var decision = await antifraud.FindDecisionAsync(transfer.EndToEndId, ct);
+            try
+            {
+                switch (decision.Outcome)
+                {
+                    case ScreeningOutcome.Approved or ScreeningOutcome.Rejected:
+                        await HandleScreeningDecisionAsync(transfer.EndToEndId,
+                            decision.Outcome == ScreeningOutcome.Approved, decision.Reason, ct);
+                        reconciled++;
+                        break;
+                    case var _ when transfer.CreatedAt < now - timeout:
+                        await HandleScreeningDecisionAsync(transfer.EndToEndId, false, ScreeningTimeoutReason, ct);
+                        reconciled++;
+                        break;
+                    case ScreeningOutcome.NotFound:
+                        await antifraud.RequestAnalysisAsync(transfer, ct);
+                        await repository.SaveChangesAsync(ct);
+                        break;
+                }
+            }
+            catch (ConcurrencyConflictException)
+            {
+            }
+        }
+
+        return reconciled;
     }
 
     public Task<Transfer?> HandleDebitedAsync(Guid accountId, string endToEndId, Guid entryId, DateTime occurredAt,

@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using financial_lab_account.Api.Consumers;
 using financial_lab_account.Api.Endpoints;
+using financial_lab_account.Api.Workers;
 using financial_lab_account.Business.Exceptions;
 using financial_lab_account.Business.Interfaces;
 using financial_lab_account.Business.Services;
@@ -15,6 +16,12 @@ builder.Services.AddDbContext<AccountDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("AccountDb")));
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountTransactionService, AccountTransactionService>();
+builder.Services.AddScoped<IAccountManagementService, AccountManagementService>();
+builder.Services.AddScoped<IBalanceHoldService, BalanceHoldService>();
+builder.Services.AddScoped<IStatementService, StatementService>();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddHostedService<HoldExpirationWorker>();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddMassTransit(x =>
 {
@@ -57,5 +64,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapAccountEndpoints();
+app.MapHoldEndpoints();
 
 app.Run();

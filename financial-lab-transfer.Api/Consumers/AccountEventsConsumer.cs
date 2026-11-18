@@ -46,7 +46,7 @@ public class AccountEventsConsumer(ITransferService service, ILogger<AccountEven
             return;
         }
 
-        var level = transfer.Status is TransferStatus.Failed or TransferStatus.Refunding or TransferStatus.Refunded
+        var level = transfer.Status is TransferStatus.FraudRejected or TransferStatus.Failed or TransferStatus.Refunding or TransferStatus.Refunded
             or TransferStatus.RefundFailed
             ? LogLevel.Warning
             : LogLevel.Information;

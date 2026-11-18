@@ -3376,6 +3376,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {
             "/mnt/ssd1/projects/financial-lab-account/financial-lab-account.Contracts/financial-lab-account.Contracts.csproj": {
@@ -3404,6 +3405,7 @@
     },
     "frameworks": {
       "net9.0": {
+        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
           "MassTransit.RabbitMQ": {

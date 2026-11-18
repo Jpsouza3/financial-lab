@@ -19,6 +19,8 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.Property(a => a.Number).HasMaxLength(20).IsRequired();
 
         builder.Property(a => a.Status).HasConversion<string>().HasMaxLength(20).IsRequired();
+        builder.Property(a => a.StatusReason).HasMaxLength(200);
+        builder.Property(a => a.OpenedAt).IsRequired();
 
         builder.Property(a => a.Balance).HasPrecision(18, 2);
         builder.Property(a => a.BlockedBalance).HasPrecision(18, 2);
@@ -27,6 +29,6 @@ public class AccountMapping : IEntityTypeConfiguration<Account>
         builder.Property(a => a.Version).IsConcurrencyToken();
 
         builder.HasIndex(a => new { a.Branch, a.Number }).IsUnique();
-        builder.HasIndex(a => a.Document);
+        builder.HasIndex(a => a.Document).IsUnique().HasFilter("\"Status\" <> 'Closed'");
     }
 }

@@ -9,3 +9,4 @@
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Business/obj/Debug/net9.0/refint/financial-lab-transfer.Business.dll
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Business/obj/Debug/net9.0/financial-lab-transfer.Business.pdb
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Business/obj/Debug/net9.0/ref/financial-lab-transfer.Business.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Business/obj/Debug/net9.0/financial-lab-transfer.Business.sourcelink.json

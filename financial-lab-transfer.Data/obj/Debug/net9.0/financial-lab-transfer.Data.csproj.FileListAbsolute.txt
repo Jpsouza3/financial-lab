@@ -13,3 +13,4 @@
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/refint/financial-lab-transfer.Data.dll
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.pdb
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/ref/financial-lab-transfer.Data.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Data/obj/Debug/net9.0/financial-lab-transfer.Data.sourcelink.json

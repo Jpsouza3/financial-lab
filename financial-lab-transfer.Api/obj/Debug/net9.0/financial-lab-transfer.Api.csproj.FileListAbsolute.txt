@@ -138,3 +138,4 @@
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Api/obj/Debug/net9.0/financial-lab-transfer.Api.pdb
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Api/obj/Debug/net9.0/financial-lab-transfer.Api.genruntimeconfig.cache
 /mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Api/obj/Debug/net9.0/ref/financial-lab-transfer.Api.dll
+/mnt/ssd1/projects/financial-lab-account/financial-lab-transfer.Api/obj/Debug/net9.0/financial-lab-transfer.Api.sourcelink.json

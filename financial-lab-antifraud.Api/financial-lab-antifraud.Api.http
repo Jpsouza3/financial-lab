@@ -1,0 +1,51 @@
+@host = http://localhost:5357
+
+### Regras atuais, na ordem de avaliação
+GET {{host}}/rules
+
+### Recusar transferências com "golpe" na descrição
+POST {{host}}/rules
+Content-Type: application/json
+
+{
+  "id": "golpe",
+  "decision": "Rejected",
+  "reason": "Descrição suspeita.",
+  "descriptionContains": "golpe"
+}
+
+### Aprovar com webhook duplicado e 2 s de atraso para uma conta de origem
+PUT {{host}}/rules/duplicado
+Content-Type: application/json
+
+{
+  "decision": "Approved",
+  "delayMs": 2000,
+  "delivery": "Duplicate",
+  "sourceAccountIds": ["11111111-1111-1111-1111-111111111111"]
+}
+
+### Habilitar a regra de conta de destino bloqueada
+PUT {{host}}/rules/destino-bloqueado
+Content-Type: application/json
+
+{
+  "decision": "Rejected",
+  "reason": "Conta de destino em lista restritiva.",
+  "destinationAccountIds": ["33333333-3333-3333-3333-333333333333"]
+}
+
+### Remover uma regra
+DELETE {{host}}/rules/golpe
+
+### Voltar às regras do appsettings.json
+POST {{host}}/rules/reset
+
+### Análise de uma transferência (troque pelo endToEndId da transferência)
+GET {{host}}/analyses?transactionId=E00000000000000000000000000000000
+
+### Últimas análises
+GET {{host}}/analyses?take=20
+
+### Limpar as análises em memória
+DELETE {{host}}/analyses
