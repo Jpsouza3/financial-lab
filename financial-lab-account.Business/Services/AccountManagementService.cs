@@ -9,6 +9,7 @@ public partial class AccountManagementService(IAccountRepository repository, Tim
     : IAccountManagementService
 {
     private const int MaxAttempts = 5;
+    private const int MaxOpenAttempts = 20;
     private const string DefaultBranch = "0001";
     private const decimal MaxInitialDeposit = 5000.00m;
     private static readonly HashSet<string> Branches = ["0001", "0002"];
@@ -53,8 +54,9 @@ public partial class AccountManagementService(IAccountRepository repository, Tim
                 await repository.SaveChangesAsync(ct);
                 return account;
             }
-            catch (ConcurrencyConflictException) when (attempt < MaxAttempts)
+            catch (ConcurrencyConflictException) when (attempt < MaxOpenAttempts)
             {
+                await Task.Delay(Random.Shared.Next(5, 20 * attempt), ct);
             }
         }
     }
