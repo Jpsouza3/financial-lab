@@ -49,7 +49,7 @@ public class TransferService(ITransferRepository repository, IAccountGateway acc
     public async Task<int> ReconcileScreeningAsync(TimeSpan staleAfter, TimeSpan timeout, int take,
         CancellationToken ct)
     {
-        var now = DateTime.UtcNow;
+        var now = UtcClock.Now;
         var stale = await repository.ListByStatusCreatedBeforeAsync(TransferStatus.Screening, now - staleAfter, take,
             ct);
         var reconciled = 0;

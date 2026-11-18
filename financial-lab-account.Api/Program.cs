@@ -1,3 +1,4 @@
+using financial_lab_account.Business.Models;
 using System.Text.Json.Serialization;
 using financial_lab_account.Api.Consumers;
 using financial_lab_account.Api.Endpoints;
@@ -19,7 +20,7 @@ builder.Services.AddScoped<IAccountTransactionService, AccountTransactionService
 builder.Services.AddScoped<IAccountManagementService, AccountManagementService>();
 builder.Services.AddScoped<IBalanceHoldService, BalanceHoldService>();
 builder.Services.AddScoped<IStatementService, StatementService>();
-builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddSingleton<TimeProvider>(UtcClock.Instance);
 builder.Services.AddHostedService<HoldExpirationWorker>();
 builder.Services.AddProblemDetails();
 

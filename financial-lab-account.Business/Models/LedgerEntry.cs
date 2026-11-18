@@ -24,6 +24,6 @@ public class LedgerEntry : Entity
         BalanceAfter = balanceAfter;
         EndToEndId = endToEndId;
         Description = description;
-        CreatedAt = DateTime.UtcNow;
+        CreatedAt = UtcClock.Now;
     }
 }

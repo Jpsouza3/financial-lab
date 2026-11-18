@@ -41,7 +41,7 @@ public class Transfer : Entity
         if (request.Description?.Length > DescriptionMaxLength)
             throw new DomainException($"A descrição deve ter no máximo {DescriptionMaxLength} caracteres.");
 
-        var now = DateTime.UtcNow;
+        var now = UtcClock.Now;
         return new Transfer
         {
             SourceAccountId = request.SourceAccountId,
@@ -121,7 +121,7 @@ public class Transfer : Entity
             FailureReason = failureReason.Length > FailureReasonMaxLength
                 ? failureReason[..FailureReasonMaxLength]
                 : failureReason;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt = UtcClock.Now;
         Version++;
         return true;
     }

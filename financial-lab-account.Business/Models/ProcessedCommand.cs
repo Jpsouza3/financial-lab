@@ -23,7 +23,7 @@ public class ProcessedCommand : Entity
         Status = status;
         LedgerEntryId = ledgerEntryId;
         RejectionReason = rejectionReason;
-        CreatedAt = DateTime.UtcNow;
+        CreatedAt = UtcClock.Now;
     }
 
     public static ProcessedCommand Applied(LedgerEntry entry)

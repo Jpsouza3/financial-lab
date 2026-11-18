@@ -1,3 +1,4 @@
+using financial_lab_transfer.Business.Models;
 using System.Text.Json.Serialization;
 using financial_lab_transfer.Api.Consumers;
 using financial_lab_transfer.Api.Endpoints;
@@ -36,7 +37,7 @@ builder.Services.AddHttpClient<AntifraudClient>((sp, client) =>
     client.BaseAddress = new Uri(sp.GetRequiredService<IOptions<AntifraudOptions>>().Value.BaseUrl);
     client.Timeout = TimeSpan.FromSeconds(5);
 });
-builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddSingleton<TimeProvider>(UtcClock.Instance);
 builder.Services.AddHostedService<ScreeningReconciler>();
 
 builder.Services.AddMassTransit(x =>
