@@ -99,6 +99,23 @@ docker compose logs -f account-api transfer-api antifraud-api
 
 O serviço `migrations` aparece como `Exited (0)` em `docker compose ps -a`, e isso é esperado.
 
+### Várias instâncias na mesma máquina
+
+Portas e imagens são parametrizáveis por variável de ambiente, então dá para subir mais de uma pilha com `-p`:
+
+```sh
+POSTGRES_PORT=6433 RABBITMQ_PORT=6672 RABBITMQ_UI_PORT=16672 \
+ACCOUNT_API_PORT=6157 TRANSFER_API_PORT=6257 ANTIFRAUD_API_PORT=6357 \
+docker compose -p financial-lab-2 up -d --build
+```
+
+| Variável | Padrão |
+|---|---|
+| `POSTGRES_PORT` | `5433` |
+| `RABBITMQ_PORT` / `RABBITMQ_UI_PORT` | `5672` / `15672` |
+| `ACCOUNT_API_PORT` / `TRANSFER_API_PORT` / `ANTIFRAUD_API_PORT` | `5157` / `5257` / `5357` |
+| `ACCOUNT_API_IMAGE` / `TRANSFER_API_IMAGE` / `ANTIFRAUD_API_IMAGE` / `MIGRATIONS_IMAGE` | `financial-lab/<serviço>` |
+
 ### Testar
 
 As contas de teste já começam com R$ 30,00:
@@ -132,8 +149,8 @@ O OpenAPI fica em http://localhost:5157/openapi/v1.json, http://localhost:5257/o
 Para consultar o banco direto:
 
 ```sh
-docker exec -it financial-lab-postgres psql -U postgres -d financial_lab_account
-docker exec -it financial-lab-postgres psql -U postgres -d financial_lab_transfer
+docker compose exec postgres psql -U postgres -d financial_lab_account
+docker compose exec postgres psql -U postgres -d financial_lab_transfer
 ```
 
 ### Parar e resetar

@@ -13,13 +13,12 @@ x-webhook-secret: &webhook-secret financial-lab-webhook-secret
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: financial-lab-postgres
     environment:
       POSTGRES_DB: financial_lab_account
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5433:5432"
+      - "${POSTGRES_PORT:-5433}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -31,14 +30,13 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: financial-lab-rabbitmq
     hostname: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_UI_PORT:-15672}:15672"
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
     healthcheck:
@@ -52,7 +50,7 @@ services:
     build:
       context: .
       target: migrations
-    image: financial-lab/migrations
+    image: ${MIGRATIONS_IMAGE:-financial-lab/migrations}
     environment:
       ACCOUNT_DB: Host=postgres;Port=5432;Database=financial_lab_account;Username=postgres;Password=postgres
       TRANSFER_DB: Host=postgres;Port=5432;Database=financial_lab_transfer;Username=postgres;Password=postgres
@@ -65,13 +63,12 @@ services:
     build:
       context: .
       target: account-api
-    image: financial-lab/account-api
-    container_name: financial-lab-account-api
+    image: ${ACCOUNT_API_IMAGE:-financial-lab/account-api}
     environment:
       <<: *dotnet-env
       ConnectionStrings__AccountDb: Host=postgres;Port=5432;Database=financial_lab_account;Username=postgres;Password=postgres
     ports:
-      - "5157:8080"
+      - "${ACCOUNT_API_PORT:-5157}:8080"
     depends_on:
       migrations:
         condition: service_completed_successfully
@@ -83,8 +80,7 @@ services:
     build:
       context: .
       target: transfer-api
-    image: financial-lab/transfer-api
-    container_name: financial-lab-transfer-api
+    image: ${TRANSFER_API_IMAGE:-financial-lab/transfer-api}
     environment:
       <<: *dotnet-env
       ConnectionStrings__TransferDb: Host=postgres;Port=5432;Database=financial_lab_transfer;Username=postgres;Password=postgres
@@ -92,7 +88,7 @@ services:
       Antifraud__CallbackUrl: http://transfer-api:8080/webhooks/antifraud
       Antifraud__WebhookSecret: *webhook-secret
     ports:
-      - "5257:8080"
+      - "${TRANSFER_API_PORT:-5257}:8080"
     depends_on:
       migrations:
         condition: service_completed_successfully
@@ -106,13 +102,12 @@ services:
     build:
       context: .
       target: antifraud-api
-    image: financial-lab/antifraud-api
-    container_name: financial-lab-antifraud-api
+    image: ${ANTIFRAUD_API_IMAGE:-financial-lab/antifraud-api}
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       Antifraud__WebhookSecret: *webhook-secret
     ports:
-      - "5357:8080"
+      - "${ANTIFRAUD_API_PORT:-5357}:8080"
     restart: unless-stopped
 
 volumes:
